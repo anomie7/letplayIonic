@@ -1,7 +1,7 @@
+import { Recommend } from '../Recommend';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
-// import { MyClass } from '../MyClass';
 /*
   Generated class for the ExhibitionProvider provider.
 
@@ -10,15 +10,46 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
 */
 @Injectable()
 export class ExhibitionProvider{
-  private user = new BehaviorSubject<string>('minu');
-  cast = this.user.asObservable();
+  private recommendList:Array<Recommend> = new Array();
+  private recommendListBehaviorSubject = new BehaviorSubject(this.recommendList);
+  cast = this.recommendListBehaviorSubject.asObservable();
 
   constructor(public http: HttpClient) {
    this.recommendApi().subscribe(
-     data => {console.log('response sucessful')},
+     data => {
+      this.getRecommendList(data);
+      this.recommendListBehaviorSubject.next(this.recommendList);
+      console.log('done exhibitionProvider')
+     },
      err => {console.error(err)},
      () => {'method is done!'}
    )
+  }
+
+  getRecommendList(data:any){
+    for(var i = 0; i < data.data.list.length; i++){
+      let datalist = data.data.list[i];
+      this.recommendList[i] = new Recommend();
+      this.recommendList[i].recommendId = datalist.recommand_id;
+      this.recommendList[i].recommendTitle = datalist.recommand_title;
+      this.getRecommendImgRealName(this.recommendList[i].recommendId, i);
+    }
+    console.log(this.recommendList);
+  }
+
+  getRecommendImgRealName(id:string, i:number){
+    this.recommendImgRealNameApi(id).subscribe(
+      data => {
+        this.recommendList[i].recommendImgRealname = data.data.REALNAME;
+        console.log(this.recommendList[i].getrecommendImgUrl());
+      },
+      err => {console.error(err)},
+      () => {'recommendImgRealNameApi done!'}
+    )
+  }
+
+  recommendImgRealNameApi(id:string){
+    return this.http.get(`/api/exhibition/${id}`)
   }
 
   recommendApi(){

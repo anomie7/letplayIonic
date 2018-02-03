@@ -6,10 +6,12 @@ import { ExhibitionProvider } from '../../providers/exhibition/exhibition';
   templateUrl: 'home.html'
 })
 export class HomePage {
-  user:string;
-  bimo:string = 'assets/imgs/bimo.jpg';
   constructor(public navCtrl: NavController, private exhibitionProvider: ExhibitionProvider) {
     console.log('hi i am home')
+  }
+
+  ionViewDidLoad(){
+   console.log('hi homePage did Load!');
   }
 
 }
