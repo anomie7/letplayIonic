@@ -15,6 +15,10 @@ export class AboutPage {
 
   ionViewDidLoad(){
    this.exhibitionProvider.cast.subscribe(user => this.user = user);
+   this.exhibitionProvider.testapi().subscribe(
+     data => {console.log(`data`)},
+     err => {console.log(err)},
+     () => console.log('done loading!')
+   );
   }
-
 }

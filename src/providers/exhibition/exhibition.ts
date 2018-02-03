@@ -9,7 +9,7 @@ import { BehaviorSubject } from "rxjs/BehaviorSubject";
   and Angular DI.
 */
 @Injectable()
-export class ExhibitionProvider {
+export class ExhibitionProvider{
   private user = new BehaviorSubject<string>('minu');
   cast = this.user.asObservable();
 
@@ -20,6 +20,10 @@ export class ExhibitionProvider {
 
   editUser(newUser){
     this.user.next(newUser);
+  }
+
+  testapi(){
+    return this.http.get('/api/recommend');
   }
 
 }
