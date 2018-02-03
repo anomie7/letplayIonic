@@ -19,7 +19,6 @@ export class ExhibitionProvider{
      data => {
       this.getRecommendList(data);
       this.recommendListBehaviorSubject.next(this.recommendList);
-      console.log('done exhibitionProvider')
      },
      err => {console.error(err)},
      () => {'method is done!'}
@@ -40,15 +39,19 @@ export class ExhibitionProvider{
   getRecommendImgRealName(id:string, i:number){
     this.recommendImgRealNameApi(id).subscribe(
       data => {
-        this.recommendList[i].recommendImgRealname = data.data.REALNAME;
-        console.log(this.recommendList[i].getrecommendImgUrl());
+        this.getRecommendRealName(data, i);
+        // console.log(this.recommendList[i].getrecommendImgUrl());
       },
       err => {console.error(err)},
       () => {'recommendImgRealNameApi done!'}
     )
   }
 
-  recommendImgRealNameApi(id:string){
+  getRecommendRealName(data:any, i:number) {
+    this.recommendList[i].recommendImgRealname = data.data.REALNAME;
+  }
+
+  recommendImgRealNameApi(id:string,){
     return this.http.get(`/api/exhibition/${id}`)
   }
 

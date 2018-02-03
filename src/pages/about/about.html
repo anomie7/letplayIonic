@@ -8,7 +8,8 @@
     <ion-slides pager>
       <ion-slide *ngFor="let slide of recommendList"
                  class="text-center slider-item"
-                 [ngStyle]="{'background-image': 'url(' + slide.getrecommendImgUrl() +')'}">
+                 [ngStyle]="{'background-image': 'url(' + slide.getrecommendImgUrl() +')'}"
+                 (click)="showContent()">
         <div class="slide-text">
           <h2>{{slide.recommendTitle}}</h2>
           <p></p>

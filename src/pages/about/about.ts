@@ -20,4 +20,9 @@ export class AboutPage {
     );
     console.log(this.recommendList);
    }
+
+   showContent(){
+     console.log('onClick!');
+     this.navCtrl.push('ContentPage');
+   }
 }
