@@ -1,3 +1,4 @@
+import { Content } from './../../providers/Content';
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
@@ -14,8 +15,12 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'content.html',
 })
 export class ContentPage {
-
+  contentList:Array<Content>;
   constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.contentList = navParams.get('contentList');
+    this.contentList.forEach( item => {
+      console.log(item);
+    })
   }
 
   ionViewDidLoad() {

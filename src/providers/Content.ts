@@ -5,6 +5,8 @@ export class Content{
   itemMainImgRealName: string;
   itemPrice:number;
   itemDiscountPrice:number;
+  itemDoStart:string;
+  itemDoEnd:string;
 
   constructor(){ }
 }

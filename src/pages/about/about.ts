@@ -21,8 +21,8 @@ export class AboutPage {
     console.log(this.recommendList);
    }
 
-   showContent(){
-     console.log('onClick!');
-     this.navCtrl.push('ContentPage');
+   showContent(contentList:any){
+     console.log(contentList);
+     this.navCtrl.push('ContentPage', {contentList: contentList});
    }
 }

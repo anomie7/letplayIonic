@@ -2,6 +2,7 @@ import { Recommend } from '../Recommend';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from "rxjs/BehaviorSubject";
+import { Content } from '../Content';
 /*
   Generated class for the ExhibitionProvider provider.
 
@@ -32,6 +33,18 @@ export class ExhibitionProvider{
       this.recommendList[i].recommendId = datalist.recommand_id;
       this.recommendList[i].recommendTitle = datalist.recommand_title;
       this.getRecommendImgRealName(this.recommendList[i].recommendId, i);
+
+      for(var j = 0; j < datalist.CONTENT_LIST.length; j++){
+        let contentList = datalist.CONTENT_LIST[j];
+        this.recommendList[i].contentList[j] = new Content();
+        this.recommendList[i].contentList[j].itemId = contentList.ITEM_ID;
+        this.recommendList[i].contentList[j].itemCategoryText = contentList.ITEM_CATEGORY_TEXT;
+        this.recommendList[i].contentList[j].itemPrice = contentList.PRICE;
+        this.recommendList[i].contentList[j].itemDiscountPrice = contentList.DISCOUNT_PRICE;
+        this.recommendList[i].contentList[j].itemMainImgRealName = contentList.ITEM_MAINIMG_REALNAME;
+        this.recommendList[i].contentList[j].itemDoStart = contentList.ITEM_DO_START;
+        this.recommendList[i].contentList[j].itemDoEnd = contentList.ITEM_DO_END;
+      }
     }
     console.log(this.recommendList);
   }
