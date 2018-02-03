@@ -14,15 +14,14 @@ export class ExhibitionProvider{
   cast = this.user.asObservable();
 
   constructor(public http: HttpClient) {
-    console.log('Hello ExhibitionProvider Provider');
-    // console.log(`hello! ${myClass.name} now ${myClass.time}  !${myClass.num}!`);
+   this.recommendApi().subscribe(
+     data => {console.log('response sucessful')},
+     err => {console.error(err)},
+     () => {'method is done!'}
+   )
   }
 
-  editUser(newUser){
-    this.user.next(newUser);
-  }
-
-  testapi(){
+  recommendApi(){
     return this.http.get('/api/recommend');
   }
 

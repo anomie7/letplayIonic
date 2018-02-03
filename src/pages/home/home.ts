@@ -9,11 +9,7 @@ export class HomePage {
   user:string;
   bimo:string = 'assets/imgs/bimo.jpg';
   constructor(public navCtrl: NavController, private exhibitionProvider: ExhibitionProvider) {
-
-  }
-
-  editUser(){
-    this.exhibitionProvider.editUser(this.user);
+    console.log('hi i am home')
   }
 
 }

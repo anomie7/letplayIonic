@@ -7,18 +7,10 @@ import { ExhibitionProvider } from '../../providers/exhibition/exhibition';
   templateUrl: 'about.html'
 })
 export class AboutPage {
-  user: string;
 
-  constructor(public navCtrl: NavController, private exhibitionProvider:ExhibitionProvider) {
+  constructor(public navCtrl: NavController) {
     console.log('hello AboutPage');
   }
 
-  ionViewDidLoad(){
-   this.exhibitionProvider.cast.subscribe(user => this.user = user);
-   this.exhibitionProvider.testapi().subscribe(
-     data => {console.log(`data`)},
-     err => {console.log(err)},
-     () => console.log('done loading!')
-   );
-  }
+  ionViewDidLoad(){ }
 }
