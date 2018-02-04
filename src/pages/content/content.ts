@@ -16,6 +16,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class ContentPage {
   contentList:Array<Content>;
+
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     this.contentList = navParams.get('contentList');
     this.contentList.forEach( item => {

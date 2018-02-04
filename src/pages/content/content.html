@@ -14,5 +14,17 @@
 
 
 <ion-content padding>
-
+  <ion-card *ngFor="let item of contentList" >
+    <img [src]="item.contentImgUrl"/>
+    <ion-card-content>
+      <ion-card-title>
+        {{item.itemTitle}}
+        </ion-card-title>
+      <p>
+       {{item.itemDoStart }} ~ {{item.itemDoEnd}}
+       {{item.itemCategoryText}} <br>
+       {{item.itemDiscountPrice}}
+      </p>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
